@@ -31,20 +31,25 @@ $(document).ready(function () {
     changeCursor(color);
   });
   
-  paintSurface.mousedown(function(e){ // if mouse is held down
+  paintSurface.mousedown(function (e) { // if mouse is held down
     lastEvent = e;
     canvasClicked = true;
-  }).mouseup(function(){ // if mouse is let up
+  }).mouseup(function () { // if mouse is let up
     canvasClicked = false;
-  }).mouseleave(function(){ // also if mouse leaves the canvas
+  }).mouseleave(function () { // also if mouse leaves the canvas
     paintSurface.mouseup();
   });
 
-  paintSurface.mousemove(function(e){ // draw if mouse is down
+  paintSurface.mousemove(function (e) { // draw if mouse is down
     if (canvasClicked) {
+      lastEventpositionX = lastEvent.pageX-paintSurface.offset().left;
+      lastEventpositionY = lastEvent.pageY-paintSurface.offset().top;
+      xposition = e.pageX-paintSurface.offset().left;
+      yposition = e.pageY-paintSurface.offset().top;
+
       context.beginPath();
-      context.moveTo(lastEvent.offsetX,lastEvent.offsetY);
-      context.lineTo(e.offsetX,e.offsetY);
+      context.moveTo(lastEventpositionX, lastEventpositionY);
+      context.lineTo(xposition, yposition);
       context.strokeStyle = color;
       context.stroke();
       lastEvent = e;
@@ -56,6 +61,9 @@ $(document).ready(function () {
 // TODO
 
 // less ugly cursor
+
+// no cursor in IE
+// no drawing in FF
 
 // add color
 //   color picker
