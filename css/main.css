@@ -34,6 +34,11 @@ ul li:nth-child(1) {
   margin-left: 8px;
 }
 
+input, label {
+  float: right;
+  clear: both;
+}
+
 .black {
   background-color: black;
 }

@@ -5,6 +5,7 @@ $(document).ready(function () {
   var context = paintSurface[0].getContext('2d');
   var lastEvent;
   var canvasClicked = false;
+  var thickness = $('#thickness').val();
 
   function changeCursor(color) { // create cursor for new color and apply it to page
     var cursor = document.createElement('canvas');
@@ -28,9 +29,25 @@ $(document).ready(function () {
     color = $(this).css("background-color");
     $(this).siblings().removeClass('selected');
     $(this).addClass('selected');
+    $('#erase').text('Click here to erase!');
     changeCursor(color);
+    thickness = $('#thickness').val();
+    $('#thickness').removeAttr('disabled');
   });
   
+  $('#thickness').change(function () { // change thickness when size slider changed
+    thickness = $('#thickness').val();
+  });
+
+  $('#erase').click(function () { // select eraser
+    $(this).text('Now you\'re erasing!')
+    $(this).siblings().removeClass('selected');
+    document.body.style.cursor = 'auto';
+    color = 'rgb(255,255,255)'
+    thickness = 100;
+    $('#thickness').attr('disabled','disabled');
+  });
+
   paintSurface.mousedown(function (e) { // if mouse is held down
     lastEvent = e;
     canvasClicked = true;
@@ -50,6 +67,8 @@ $(document).ready(function () {
       context.beginPath();
       context.moveTo(lastEventpositionX, lastEventpositionY);
       context.lineTo(xposition, yposition);
+      context.lineWidth = thickness
+      context.lineCap = 'round';
       context.strokeStyle = color;
       context.stroke();
       lastEvent = e;
@@ -62,16 +81,12 @@ $(document).ready(function () {
 
 // less ugly cursor
 
-// no cursor in IE
-// no drawing in FF
-
 // add color
 //   color picker
 // remove color
 
 // multiple brushes
 // draw shapes
-// erase
 
 // clear canvas
 // save created picture
