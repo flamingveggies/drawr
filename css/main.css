@@ -1,0 +1,79 @@
+body {
+  font-family: 'Varela Round', Helvetica, Arial, sans-serif;
+  background-color: #eceeef;
+}
+
+canvas {
+  display: block;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #D5DDE4;
+  margin: 15px auto;
+}
+
+ul {
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #D5DDE4;
+  padding: 0;
+  width: 960px;
+  margin: auto;
+}
+
+ul li {
+  display: inline-block;
+  list-style: none;
+  height: 32px;
+  width: 32px;
+  border-radius: 100%;
+  border: 1px solid #D5DDE4;
+  margin: 8px 4px;
+}
+
+ul li:nth-child(1) {
+  margin-left: 8px;
+}
+
+.black {
+  background-color: black;
+}
+
+.grey {
+  background-color: grey;
+}
+
+.white {
+  background-color: white;
+}
+
+.red {
+  background-color: red;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: green;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.purple {
+  background-color: purple;
+}
+
+.pink {
+  background-color: pink;
+}
+
+.brown {
+  background-color: brown;
+}
