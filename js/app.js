@@ -32,6 +32,7 @@ $(document).ready(function () {
     ctx.stroke();
     ctx.fill();
     changeCursor(color); // initialize cursor to default selected color (black)
+    $('#thickcounter').text(thickness);
     $('.erasercontrol').hide();
   }
 
@@ -43,6 +44,7 @@ $(document).ready(function () {
     $(this).addClass('selected');
     changeCursor(color);
     thickness = $('#thickness').val();
+    $('#thickcounter').text(thickness);
     $('#thickness').removeAttr('disabled');
     $('#eraserthickness').attr('disabled','disabled');
     $('.brushcontrol').show();
@@ -52,16 +54,19 @@ $(document).ready(function () {
   
   $('#thickness').change(function () { // change thickness when size slider changed
     thickness = $('#thickness').val();
+    $('#thickcounter').text(thickness);
   });
 
   $('#eraserthickness').change(function () { // change eraser thickness when eraser slider changed
     thickness = $('#eraserthickness').val();
+    $('#thickcounter').text(thickness);
   });
 
   $('#erase').click(function () { // select eraser
     document.body.style.cursor = 'auto';
     color = 'white';
     thickness = $('#eraserthickness').val();
+    $('#thickcounter').text(thickness);
     $('#eraserthickness').removeAttr('disabled');
     $('#thickness').attr('disabled','disabled');
     $('.brushcontrol').hide();
