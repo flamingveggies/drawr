@@ -8,36 +8,76 @@ canvas {
   background-color: #fff;
   border-radius: 4px;
   border: 1px solid #D5DDE4;
-  margin: 15px auto;
+  margin: 10px auto;
 }
 
-ul {
+#selectedtool {
+  height: 26px;
+  width: 26px;
+  border-left: 1px solid #D5DDE4;
+  border-right: 1px solid #D5DDE4;
+  background: #000;
+  margin: 0;
+}
+
+div {
   background-color: #fff;
+  list-style: none;
   border-radius: 4px;
   border: 1px solid #D5DDE4;
   padding: 0;
   width: 960px;
-  margin: auto;
+  margin: 10px auto;
 }
 
-ul li {
+ul {
+  border-top: 1px solid #D5DDE4;
+  padding: 0;
+  margin: 0;
+}
+
+ul#tools {
+  border-top: none;
+  padding-left: 8px;
+}
+
+ul#palette {
+  line-height: 0;
+}
+
+#tools * {
   display: inline-block;
-  list-style: none;
-  height: 32px;
-  width: 32px;
+  vertical-align: middle;
+}
+
+#save, #clear {
+  float: right;
+}
+
+#palette li {
+  display: inline-block;
+  height: 24px;
+  width: 24px;
   border-radius: 100%;
   border: 1px solid #D5DDE4;
-  margin: 8px 4px;
+  margin: 4px 1px;
 }
 
-ul li:nth-child(1) {
+#palette li#erase {
+  background-image: url("../eraser24.png");
+}
+
+#palette li:nth-child(1) {
   margin-left: 8px;
 }
 
-input, label {
-  float: right;
-  clear: both;
+#tools li {
+  display: inline-block;
 }
+
+/*#save, #clear {
+  float: right;
+}*/
 
 .black {
   background-color: black;

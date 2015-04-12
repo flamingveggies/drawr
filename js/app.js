@@ -1,38 +1,38 @@
 $(document).ready(function () {
 
   var color = $('.selected').css('background-color');
-  var paintSurface = $('canvas');
-  var context = paintSurface[0].getContext('2d');
+  var paintSurface = $('#paintsurface');
+  var ctx = paintSurface[0].getContext('2d');
   var lastEvent;
   var canvasClicked = false;
   var thickness = $('#thickness').val();
 
   function changeCursor(color) { // create cursor for new color and apply it to page
     var cursor = document.createElement('canvas');
-    var context = cursor.getContext('2d');
+    var ctx = cursor.getContext('2d');
     cursor.width = 16;
     cursor.height = 16;
-    context.strokeStyle = color;
-    context.lineWidth = 2;
-    context.moveTo(2, 10);
-    context.lineTo(2, 2);
-    context.lineTo(10, 2);
-    context.moveTo(2, 2);
-    context.lineTo(30, 30)    
-    context.stroke();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
+    ctx.moveTo(2, 10);
+    ctx.lineTo(2, 2);
+    ctx.lineTo(10, 2);
+    ctx.moveTo(2, 2);
+    ctx.lineTo(30, 30)    
+    ctx.stroke();
     document.body.style.cursor = 'url(' + cursor.toDataURL() + '), auto';
   }
 
   changeCursor(color); // initialize cursor to default selected color (black)
 
   $('li').click(function () { // make clicked color 'selected' and change cursor
-    color = $(this).css("background-color");
+    color = $(this).css('background-color');
     $(this).siblings().removeClass('selected');
     $(this).addClass('selected');
-    $('#erase').text('Click here to erase!');
     changeCursor(color);
     thickness = $('#thickness').val();
     $('#thickness').removeAttr('disabled');
+    $('#selectedtool').css('background', color);
   });
   
   $('#thickness').change(function () { // change thickness when size slider changed
@@ -40,12 +40,21 @@ $(document).ready(function () {
   });
 
   $('#erase').click(function () { // select eraser
-    $(this).text('Now you\'re erasing!')
-    $(this).siblings().removeClass('selected');
     document.body.style.cursor = 'auto';
     color = 'rgb(255,255,255)'
     thickness = 100;
     $('#thickness').attr('disabled','disabled');
+    $('#selectedtool').css('background', 'url("eraser26.png")');
+    document.body.style.cursor = 'url(eraser16.png), auto';
+  });
+
+  $('#save').click(function () { // save canvas
+      var dataURL = paintSurface[0].toDataURL('image/png');
+      window.open(dataURL);
+    });
+
+  $('#clear').click(function () { // clear canvas and start over
+    ctx.clearRect(0,0,960,540);
   });
 
   paintSurface.mousedown(function (e) { // if mouse is held down
@@ -64,13 +73,13 @@ $(document).ready(function () {
       xposition = e.pageX-paintSurface.offset().left;
       yposition = e.pageY-paintSurface.offset().top;
 
-      context.beginPath();
-      context.moveTo(lastEventpositionX, lastEventpositionY);
-      context.lineTo(xposition, yposition);
-      context.lineWidth = thickness
-      context.lineCap = 'round';
-      context.strokeStyle = color;
-      context.stroke();
+      ctx.beginPath();
+      ctx.moveTo(lastEventpositionX, lastEventpositionY);
+      ctx.lineTo(xposition, yposition);
+      ctx.lineWidth = thickness
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = color;
+      ctx.stroke();
       lastEvent = e;
     }
   })
@@ -79,14 +88,6 @@ $(document).ready(function () {
 
 // TODO
 
-// less ugly cursor
-
 // add color
 //   color picker
 // remove color
-
-// multiple brushes
-// draw shapes
-
-// clear canvas
-// save created picture
