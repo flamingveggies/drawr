@@ -15,12 +15,12 @@
 </canvas>
 <div>
   <ul id="tools">
-    <!-- <label for="selectedtool">Selected:</label> -->
     <li>Selected:</li>
     <li id="selectedtool"></li>
-    <!-- <label for="thickness">Brush Size</label> -->
-    <li>Brush Size:</li>
-    <input id="thickness" type="range" name="thickness" value="1" min="1" max="20">
+    <li class="brushcontrol">Brush Size:</li>
+    <input id="thickness" class="brushcontrol" type="range" name="thickness" value="1" min="1" max="20">
+    <li class="erasercontrol">Eraser Size:</li>
+    <input id="eraserthickness" class="erasercontrol" type="range" name="thickness" value="100" min="1" max="100">
     <button id="save" type="button" value="Save">Save Canvas</button>
     <button id="clear" type="button" value="Clear">Clear Canvas</button>
   </ul>

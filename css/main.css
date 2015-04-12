@@ -75,10 +75,6 @@ ul#palette {
   display: inline-block;
 }
 
-/*#save, #clear {
-  float: right;
-}*/
-
 .black {
   background-color: black;
 }

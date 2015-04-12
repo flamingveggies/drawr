@@ -23,7 +23,19 @@ $(document).ready(function () {
     document.body.style.cursor = 'url(' + cursor.toDataURL() + '), auto';
   }
 
-  changeCursor(color); // initialize cursor to default selected color (black)
+  function initializeCanvas() {
+    var paintSurface = $('#paintsurface');
+    var ctx = paintSurface[0].getContext('2d');
+    ctx.fillStyle = 'rgb(255,255,255)';
+    ctx.lineWidth = 0;
+    ctx.rect(0,0,960,540); // make background white instead of transparent
+    ctx.stroke();
+    ctx.fill();
+    changeCursor(color); // initialize cursor to default selected color (black)
+    $('.erasercontrol').hide();
+  }
+
+  initializeCanvas(); // set up canvas upon page load
 
   $('li').click(function () { // make clicked color 'selected' and change cursor
     color = $(this).css('background-color');
@@ -32,6 +44,9 @@ $(document).ready(function () {
     changeCursor(color);
     thickness = $('#thickness').val();
     $('#thickness').removeAttr('disabled');
+    $('#eraserthickness').attr('disabled','disabled');
+    $('.brushcontrol').show();
+    $('.erasercontrol').hide();
     $('#selectedtool').css('background', color);
   });
   
@@ -39,11 +54,18 @@ $(document).ready(function () {
     thickness = $('#thickness').val();
   });
 
+  $('#eraserthickness').change(function () { // change eraser thickness when eraser slider changed
+    thickness = $('#eraserthickness').val();
+  });
+
   $('#erase').click(function () { // select eraser
     document.body.style.cursor = 'auto';
-    color = 'rgb(255,255,255)'
-    thickness = 100;
+    color = 'white';
+    thickness = $('#eraserthickness').val();
+    $('#eraserthickness').removeAttr('disabled');
     $('#thickness').attr('disabled','disabled');
+    $('.brushcontrol').hide();
+    $('.erasercontrol').show();
     $('#selectedtool').css('background', 'url("eraser26.png")');
     document.body.style.cursor = 'url(eraser16.png), auto';
   });
@@ -54,7 +76,14 @@ $(document).ready(function () {
     });
 
   $('#clear').click(function () { // clear canvas and start over
-    ctx.clearRect(0,0,960,540);
+    var paintSurface = $('#paintsurface');
+    var ctx = paintSurface[0].getContext('2d');
+    ctx.fillStyle = 'rgb(255,255,255)';
+    ctx.lineWidth = 0;
+    ctx.clearRect(0,0,960,540); // erase canvas
+    ctx.rect(0,0,960,540); // make background white instead of tansparent
+    ctx.stroke();
+    ctx.fill();
   });
 
   paintSurface.mousedown(function (e) { // if mouse is held down
@@ -62,6 +91,7 @@ $(document).ready(function () {
     canvasClicked = true;
   }).mouseup(function () { // if mouse is let up
     canvasClicked = false;
+    lastEvent = undefined;
   }).mouseleave(function () { // also if mouse leaves the canvas
     paintSurface.mouseup();
   });
@@ -82,7 +112,7 @@ $(document).ready(function () {
       ctx.stroke();
       lastEvent = e;
     }
-  })
+  });
 
 });
 
