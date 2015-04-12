@@ -13,21 +13,31 @@
 <body>
 <canvas id="paintsurface" width="960" height="540">
 </canvas>
-<ul>
-  <li class="black selected"></li>
-  <li class="grey"></li>
-  <li class="white"></li>
-  <li class="red"></li>
-  <li class="orange"></li>
-  <li class="yellow"></li>
-  <li class="green"></li>
-  <li class="blue"></li>
-  <li class="purple"></li>
-  <li class="pink"></li>
-  <li class="brown"></li>
-  <label for="thickness">Brush Size</label>
-  <input id="thickness" type="range" name="thickness" value="1" min="1" max="20">
-  <button id="erase" type="button" value="Erase">Click here to erase!</button>
-</ul>
+<div>
+  <ul id="tools">
+    <!-- <label for="selectedtool">Selected:</label> -->
+    <li>Selected:</li>
+    <li id="selectedtool"></li>
+    <!-- <label for="thickness">Brush Size</label> -->
+    <li>Brush Size:</li>
+    <input id="thickness" type="range" name="thickness" value="1" min="1" max="20">
+    <button id="save" type="button" value="Save">Save Canvas</button>
+    <button id="clear" type="button" value="Clear">Clear Canvas</button>
+  </ul>
+  <ul id="palette">
+    <li id="erase"></li>
+    <li class="black selected"></li>
+    <li class="grey"></li>
+    <li class="white"></li>
+    <li class="red"></li>
+    <li class="orange"></li>
+    <li class="yellow"></li>
+    <li class="green"></li>
+    <li class="blue"></li>
+    <li class="purple"></li>
+    <li class="pink"></li>
+    <li class="brown"></li>
+  </ul>
+</div>
 </body>
 </html>
