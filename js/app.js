@@ -8,7 +8,7 @@ $(document).ready(function () {
   var thickness = $('#thickness').val();
 
   function changeCursor(color) { // create cursor for new color and apply it to page
-    var cursor = document.createElement('canvas');
+    var cursor = document.createElement('canvas'); // create cursor canvas
     var ctx = cursor.getContext('2d');
     cursor.width = 16;
     cursor.height = 16;
@@ -19,63 +19,62 @@ $(document).ready(function () {
     ctx.lineTo(10, 2);
     ctx.moveTo(2, 2);
     ctx.lineTo(30, 30)    
-    ctx.stroke();
-    document.body.style.cursor = 'url(' + cursor.toDataURL() + '), auto';
+    ctx.stroke(); // draw cursor
+    document.body.style.cursor = 'url(' + cursor.toDataURL() + '), auto'; // change to new cursor
   }
 
-  function initializeCanvas() {
+  function initializeCanvas() { // ensure canvas starts with selected default settings
     var paintSurface = $('#paintsurface');
     var ctx = paintSurface[0].getContext('2d');
     ctx.fillStyle = 'rgb(255,255,255)';
     ctx.lineWidth = 0;
-    ctx.rect(0,0,960,540); // make background white instead of transparent
+    ctx.rect(0,0,960,540);
     ctx.stroke();
-    ctx.fill();
+    ctx.fill(); // make background white instead of transparent
     changeCursor(color); // initialize cursor to default selected color (black)
-    $('#thickcounter').text(thickness);
-    $('.erasercontrol').hide();
+    $('#thickcounter').text(thickness); // initialize counter
+    $('.erasercontrol').hide(); // initialize size slider to brush slider
   }
 
   initializeCanvas(); // set up canvas upon page load
 
-  $('li').click(function () { // make clicked color 'selected' and change cursor
-    color = $(this).css('background-color');
+  $('li').click(function () { // when color palette items selected:
+    color = $(this).css('background-color'); // set brush color to color selected
     $(this).siblings().removeClass('selected');
-    $(this).addClass('selected');
-    changeCursor(color);
-    thickness = $('#thickness').val();
-    $('#thickcounter').text(thickness);
+    $(this).addClass('selected'); // make clicked color 'selected'
+    changeCursor(color); // change cursor to new color
+    thickness = $('#thickness').val(); // update thickness
+    $('#thickcounter').text(thickness); // change thickness counter to match new thickness
     $('#thickness').removeAttr('disabled');
-    $('#eraserthickness').attr('disabled','disabled');
+    $('#eraserthickness').attr('disabled','disabled'); 
     $('.brushcontrol').show();
-    $('.erasercontrol').hide();
-    $('#selectedtool').css('background', color);
+    $('.erasercontrol').hide(); // show/enable brush thickness slider, hide/disable eraser thickness slider
+    $('#selectedtool').css('background', color); // update selected tool with new color
   });
   
-  $('#thickness').change(function () { // change thickness when size slider changed
+  $('#thickness').change(function () { // change thickness when size slider changed and update counter
     thickness = $('#thickness').val();
     $('#thickcounter').text(thickness);
   });
 
-  $('#eraserthickness').change(function () { // change eraser thickness when eraser slider changed
+  $('#eraserthickness').change(function () { // change eraser thickness when eraser slider changed and update counter
     thickness = $('#eraserthickness').val();
     $('#thickcounter').text(thickness);
   });
 
-  $('#erase').click(function () { // select eraser
-    document.body.style.cursor = 'auto';
-    color = 'white';
-    thickness = $('#eraserthickness').val();
-    $('#thickcounter').text(thickness);
+  $('#erase').click(function () { // when eraser selected:
+    color = 'white'; // set eraser to white
+    thickness = $('#eraserthickness').val(); // update thickness
+    $('#thickcounter').text(thickness); // change thickness counter to match new thickness
     $('#eraserthickness').removeAttr('disabled');
     $('#thickness').attr('disabled','disabled');
     $('.brushcontrol').hide();
-    $('.erasercontrol').show();
-    $('#selectedtool').css('background', 'url("eraser26.png")');
-    document.body.style.cursor = 'url(eraser16.png), auto';
+    $('.erasercontrol').show(); // show/enable eraser thickness slider, hide/disable brush thickness slider
+    $('#selectedtool').css('background', 'url("eraser26.png")'); // update selected tool with eraser icon
+    document.body.style.cursor = 'url(eraser16.png), auto'; // change cursor to eraser
   });
 
-  $('#save').click(function () { // save canvas
+  $('#save').click(function () { // fetch canvas url and open in new tab to save
       var dataURL = paintSurface[0].toDataURL('image/png');
       window.open(dataURL);
     });
@@ -86,9 +85,9 @@ $(document).ready(function () {
     ctx.fillStyle = 'rgb(255,255,255)';
     ctx.lineWidth = 0;
     ctx.clearRect(0,0,960,540); // erase canvas
-    ctx.rect(0,0,960,540); // make background white instead of tansparent
+    ctx.rect(0,0,960,540);
     ctx.stroke();
-    ctx.fill();
+    ctx.fill(); // make background white instead of tansparent
   });
 
   paintSurface.mousedown(function (e) { // if mouse is held down
@@ -96,12 +95,11 @@ $(document).ready(function () {
     canvasClicked = true;
   }).mouseup(function () { // if mouse is let up
     canvasClicked = false;
-    lastEvent = undefined;
-  }).mouseleave(function () { // also if mouse leaves the canvas
+  }).mouseleave(function () { // if mouse leaves canvas, interpret as if mouse is up
     paintSurface.mouseup();
   });
 
-  paintSurface.mousemove(function (e) { // draw if mouse is down
+  paintSurface.mousemove(function (e) { // draw if mouse is down over canvas
     if (canvasClicked) {
       lastEventpositionX = lastEvent.pageX-paintSurface.offset().left;
       lastEventpositionY = lastEvent.pageY-paintSurface.offset().top;
