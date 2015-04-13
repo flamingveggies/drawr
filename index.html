@@ -13,7 +13,7 @@
 <body>
 <canvas id="paintsurface" width="960" height="540">
 </canvas>
-<div>
+<div id="toolbar">
   <ul id="tools">
     <li>Selected:</li>
     <li id="selectedtool"></li>
@@ -24,9 +24,11 @@
     <li id="thickcounter"></li>
     <button id="save" type="button" value="Save">Save Canvas</button>
     <button id="clear" type="button" value="Clear">Clear Canvas</button>
+    <button id="removecolor" type="button" value="remove">Remove Selected Color</button>
+    <button id="addcolor" type="button" value="add">Add New Color</button>
   </ul>
   <ul id="palette">
-    <li id="erase"></li>
+    <span id="erase"></span>
     <li class="black selected"></li>
     <li class="grey"></li>
     <li class="white"></li>
@@ -39,6 +41,17 @@
     <li class="pink"></li>
     <li class="brown"></li>
   </ul>
+</div>
+<div id="colorpicker">
+  <span id="colorpicked"></span>
+  <label for="redslider">Red</label>
+  <input id="redslider" class="colorslider" type="range" name="redslider" value="0" min="0" max="255">
+  <label for="greenslider">Green</label>
+  <input id="greenslider" class="colorslider" type="range" name="greenslider" value="0" min="0" max="255">
+  <label for="blueslider">Blue</label>
+  <input id="blueslider" class="colorslider" type="range" name="blueslider" value="0" min="0" max="255">
+  <button id="attachcolor" type="button" value="attach">Add to Palette</button>
+  <button id="cancelcolor" type="button" value="cencel">Cancel</button>
 </div>
 </body>
 </html>

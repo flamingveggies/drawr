@@ -26,8 +26,22 @@ div {
   border-radius: 4px;
   border: 1px solid #D5DDE4;
   padding: 0;
+}
+
+div#toolbar {
   width: 960px;
   margin: 10px auto;
+}
+
+#colorpicker * {
+  display: block;
+}
+
+span#colorpicked {
+  height: 48px;
+  width: 48px;
+  display: block;
+  background-color: #000;
 }
 
 ul {
@@ -50,11 +64,15 @@ ul#palette {
   vertical-align: middle;
 }
 
-#save, #clear {
+#save, #clear, #addcolor, #removecolor {
   float: right;
 }
 
-#palette li {
+#removecolor {
+  margin-right: 16px;
+}
+
+#palette li, #erase {
   display: inline-block;
   height: 24px;
   width: 24px;
@@ -63,12 +81,9 @@ ul#palette {
   margin: 4px 1px;
 }
 
-#palette li#erase {
-  background-image: url("../eraser24.png");
-}
-
-#palette li:nth-child(1) {
+#palette span#erase {
   margin-left: 8px;
+  background-image: url("../eraser24.png");
 }
 
 #tools li {
