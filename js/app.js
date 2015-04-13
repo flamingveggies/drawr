@@ -104,7 +104,7 @@ $(document).ready(function () {
 
   $('#attachcolor').click(function () { // add picked color to palette, select new color, hide color picker
     var newColor = $('<li></li>');
-    newColor.css('background-color', $('#colorpicked').css('background-color'));
+    newColor.css('background-color', $('#colorpicked').css('background-color')).css('margin', '4px 3px');
     $('#palette').append(newColor);
     newColor.click();
     $('#colorpicker').hide();
@@ -149,9 +149,3 @@ $(document).ready(function () {
   });
 
 });
-
-// TODO
-
-// add color
-//   color picker
-// remove color
