@@ -11,23 +11,12 @@ canvas {
   margin: 10px auto;
 }
 
-#selectedtool {
-  height: 26px;
-  width: 26px;
-  border-left: 1px solid #D5DDE4;
-  border-right: 1px solid #D5DDE4;
-  background: #000;
-  margin: 0;
-}
-
 div {
   background-color: #fff;
   list-style: none;
   border-radius: 4px;
   border: 1px solid #D5DDE4;
   padding: 0;
-  width: 960px;
-  margin: 10px auto;
 }
 
 ul {
@@ -45,16 +34,48 @@ ul#palette {
   line-height: 0;
 }
 
+input[type=range] {
+  width: 129px;
+  height: 21px;
+  padding: 2px;
+}
+
+button {
+  padding: 1px 6px;
+}
+
+#toolbar {
+  width: 960px;
+  margin: 10px auto;
+}
+
 #tools * {
   display: inline-block;
   vertical-align: middle;
 }
 
-#save, #clear {
+#tools li {
+  display: inline-block;
+}
+
+#selectedtool {
+  height: 26px;
+  width: 26px;
+  border-left: 1px solid #D5DDE4;
+  border-right: 1px solid #D5DDE4;
+  background: #000;
+  margin: 0;
+}
+
+#save, #clear, #addcolor, #removecolor {
   float: right;
 }
 
-#palette li {
+#removecolor {
+  margin-right: 12px;
+}
+
+#palette li, #erase {
   display: inline-block;
   height: 24px;
   width: 24px;
@@ -63,16 +84,46 @@ ul#palette {
   margin: 4px 1px;
 }
 
-#palette li#erase {
+#palette span#erase {
+  margin-left: 8px;
   background-image: url("../eraser24.png");
 }
 
-#palette li:nth-child(1) {
-  margin-left: 8px;
+#colorpicker {
+  position: absolute;
+  border-radius: 16px;
+  box-shadow: 0 0 16px rgba(0,0,0,1);
+  left: 380px;
+  top: 400px;
+  width: 213px;
+  z-index: 1;
+  padding: 12px;
 }
 
-#tools li {
+#colorpicker * {
+  display: block;
+}
+
+#colorpicker p {
   display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+}
+
+#colorpicker button {
+  display: inline-block;
+  margin-top: 12px;
+}
+
+#colorpicked {
+  height: 62px;
+  width: 62px;
+  margin: 35.5px 12px 31.5px 0;
+  display: block;
+  background-color: #000;
+  border: 1px solid #D5DDE4;
+  border-radius: 100%;
+  float: left;
 }
 
 .black {

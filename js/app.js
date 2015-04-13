@@ -34,11 +34,12 @@ $(document).ready(function () {
     changeCursor(color); // initialize cursor to default selected color (black)
     $('#thickcounter').text(thickness); // initialize counter
     $('.erasercontrol').hide(); // initialize size slider to brush slider
+    $('#colorpicker').hide(); // hide color picker
   }
 
   initializeCanvas(); // set up canvas upon page load
 
-  $('li').click(function () { // when color palette items selected:
+  $('#palette').on('click', 'li', function () { // when color palette items selected:
     color = $(this).css('background-color'); // set brush color to color selected
     $(this).siblings().removeClass('selected');
     $(this).addClass('selected'); // make clicked color 'selected'
@@ -66,6 +67,8 @@ $(document).ready(function () {
     color = 'white'; // set eraser to white
     thickness = $('#eraserthickness').val(); // update thickness
     $('#thickcounter').text(thickness); // change thickness counter to match new thickness
+    $(this).removeClass('selected'); // don't select
+    $(this).siblings().removeClass('selected'); // deselect colors
     $('#eraserthickness').removeAttr('disabled');
     $('#thickness').attr('disabled','disabled');
     $('.brushcontrol').hide();
@@ -88,6 +91,34 @@ $(document).ready(function () {
     ctx.rect(0,0,960,540);
     ctx.stroke();
     ctx.fill(); // make background white instead of tansparent
+  });
+
+  $('#addcolor').click(function () { // show color picker to add new color to palette
+    $('#colorpicker').show();
+  });
+
+  $('#removecolor').click(function () { // remove selected color from color palette and select last palette color
+    $('li.selected').remove();
+    $('#palette li:last-child').click();
+  });
+
+  $('#attachcolor').click(function () { // add picked color to palette, select new color, hide color picker
+    var newColor = $('<li></li>');
+    newColor.css('background-color', $('#colorpicked').css('background-color')).css('margin', '4px 3px');
+    $('#palette').append(newColor);
+    newColor.click();
+    $('#colorpicker').hide();
+  });
+
+  $('#cancelcolor').click(function () { // close color picker without changign anything
+    $('#colorpicker').hide();
+  });
+
+  $('.colorslider').change(function () { // update picked color when sliders changed
+    var r = $('#redslider').val();
+    var g = $('#greenslider').val();
+    var b = $('#blueslider').val();
+    $('#colorpicked').css('background-color', 'rgb(' + r + ',' + g + ',' + b + ')');
   });
 
   paintSurface.mousedown(function (e) { // if mouse is held down
@@ -118,9 +149,3 @@ $(document).ready(function () {
   });
 
 });
-
-// TODO
-
-// add color
-//   color picker
-// remove color
