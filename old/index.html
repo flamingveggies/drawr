@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Drawr</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Varela+Round">
+  <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/3.0.2/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="js/app.js"></script>
+</head>
+<body>
+<canvas id="paintsurface" width="960" height="540">
+</canvas>
+<div id="toolbar">
+  <ul id="tools">
+    <li>Selected:</li>
+    <li id="selectedtool"></li>
+    <li class="brushcontrol">Brush Size:</li>
+    <input id="thickness" class="brushcontrol" type="range" name="thickness" value="1" min="1" max="20">
+    <li class="erasercontrol">Eraser Size:</li>
+    <input id="eraserthickness" class="erasercontrol" type="range" name="thickness" value="100" min="1" max="100">
+    <li id="thickcounter"></li>
+    <button id="save" type="button" value="Save">Save Canvas</button>
+    <button id="clear" type="button" value="Clear">Clear Canvas</button>
+    <button id="removecolor" type="button" value="remove">Remove Selected Color</button>
+    <button id="addcolor" type="button" value="add">Add New Color</button>
+  </ul>
+  <ul id="palette">
+    <span id="erase"></span>
+    <li class="black selected"></li>
+    <li class="grey"></li>
+    <li class="white"></li>
+    <li class="red"></li>
+    <li class="orange"></li>
+    <li class="yellow"></li>
+    <li class="green"></li>
+    <li class="blue"></li>
+    <li class="purple"></li>
+    <li class="pink"></li>
+    <li class="brown"></li>
+  </ul>
+</div>
+<div id="colorpicker">
+  <span id="colorpicked"></span>
+  <p>
+    <label for="redslider">Red</label>
+    <input id="redslider" class="colorslider" type="range" name="redslider" value="0" min="0" max="255">
+  </p>
+  <p>
+    <label for="greenslider">Green</label>
+    <input id="greenslider" class="colorslider" type="range" name="greenslider" value="0" min="0" max="255">
+  </p>
+  <p>
+    <label for="blueslider">Blue</label>
+    <input id="blueslider" class="colorslider" type="range" name="blueslider" value="0" min="0" max="255">
+  </p>
+  <button id="attachcolor" type="button" value="attach">Add to Palette</button>
+  <button id="cancelcolor" type="button" value="cencel">Cancel</button>
+</div>
+</body>
+</html>
