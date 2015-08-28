@@ -1,0 +1,171 @@
+body {
+  font-family: 'Varela Round', Helvetica, Arial, sans-serif;
+  background-color: #eceeef;
+}
+
+canvas {
+  display: block;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #D5DDE4;
+  margin: 10px auto;
+}
+
+div {
+  background-color: #fff;
+  list-style: none;
+  border-radius: 4px;
+  border: 1px solid #D5DDE4;
+  padding: 0;
+}
+
+ul {
+  border-top: 1px solid #D5DDE4;
+  padding: 0;
+  margin: 0;
+}
+
+ul#tools {
+  border-top: none;
+  padding-left: 8px;
+}
+
+ul#palette {
+  line-height: 0;
+}
+
+input[type=range] {
+  width: 129px;
+  height: 21px;
+  padding: 2px;
+}
+
+button {
+  padding: 1px 6px;
+}
+
+#toolbar {
+  width: 960px;
+  margin: 10px auto;
+}
+
+#tools * {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#tools li {
+  display: inline-block;
+}
+
+#selectedtool {
+  height: 26px;
+  width: 26px;
+  border-left: 1px solid #D5DDE4;
+  border-right: 1px solid #D5DDE4;
+  background: #000;
+  margin: 0;
+}
+
+#save, #clear, #addcolor, #removecolor {
+  float: right;
+}
+
+#removecolor {
+  margin-right: 12px;
+}
+
+#palette li, #erase {
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+  border-radius: 100%;
+  border: 1px solid #D5DDE4;
+  margin: 4px 1px;
+}
+
+#palette span#erase {
+  margin-left: 8px;
+  background-image: url("../eraser24.png");
+}
+
+#colorpicker {
+  position: absolute;
+  border-radius: 16px;
+  box-shadow: 0 0 16px rgba(0,0,0,1);
+  left: 380px;
+  top: 400px;
+  width: 213px;
+  z-index: 1;
+  padding: 12px;
+}
+
+#colorpicker * {
+  display: block;
+}
+
+#colorpicker p {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+}
+
+#colorpicker button {
+  display: inline-block;
+  margin-top: 12px;
+}
+
+#colorpicked {
+  height: 62px;
+  width: 62px;
+  margin: 35.5px 12px 31.5px 0;
+  display: block;
+  background-color: #000;
+  border: 1px solid #D5DDE4;
+  border-radius: 100%;
+  float: left;
+}
+
+.black {
+  background-color: black;
+}
+
+.grey {
+  background-color: grey;
+}
+
+.white {
+  background-color: white;
+}
+
+.red {
+  background-color: red;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: green;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.purple {
+  background-color: purple;
+}
+
+.pink {
+  background-color: pink;
+}
+
+.brown {
+  background-color: brown;
+}
